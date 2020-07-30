@@ -1,6 +1,4 @@
 export const constant = {
-    serverUrl: 'http://localhost:4000/api/v1/',
-}
-export const apiUri = {
-    loginUrl: 'auth/login',
+    etherNet: 'https://ropsten.infura.io/v3/78907c7e10b342af904229de037ce361',
+    etherNetSocket: 'wss://ropsten.infura.io/ws/v3/78907c7e10b342af904229de037ce361'
 }

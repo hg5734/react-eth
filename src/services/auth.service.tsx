@@ -1,7 +1,5 @@
 import BaseSevice from "./base";
 import { LoginInterface, IUserInformation } from '../interfaces/interface';
-// import { apiUri } from "../utils/constant";
-// const { loginUrl } = apiUri;
 
 export class AuthSevice extends BaseSevice {
 

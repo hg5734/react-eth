@@ -12,6 +12,7 @@ export interface IUserInformation {
 
 export interface Asset {
     address: string;
+    assetAddress:string;
 }
 
 export interface Transaction {
