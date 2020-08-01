@@ -11,7 +11,7 @@ export interface IUserInformation {
 }
 
 export interface Asset {
-    _id?:string;
+    _id?: string;
     ethAddress: string;
     assetAddress: string;
     name: string;
@@ -24,5 +24,13 @@ export interface LogsQuery {
 }
 
 export interface Transaction {
-    address: string;
+    _id:string;
+    transactionHash: string;
+    toAddress: string;
+    fromAddress: string;
+    value: number,
+    eventType: string,
+    blockNo: string,
+    assetAddress: string,
+    ethAddress: string,
 }
