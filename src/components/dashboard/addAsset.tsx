@@ -28,7 +28,7 @@ class AddAssetComponent extends React.Component<any, any> {
             }
         } catch (error) {
             console.log(error);
-            alert(error.message || ErrorMessage.SOMETHING_WENT_WRONG)
+            alert((error.response && error.response.data && error.response.data.message)|| error.message || ErrorMessage.SOMETHING_WENT_WRONG)
         }
     }
 

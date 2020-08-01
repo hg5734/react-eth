@@ -2,6 +2,7 @@ import * as React from "react";
 import { Asset } from '../../interfaces/interface';
 import PubSub from 'pubsub-js'
 import { DashboardSevice } from "../../services/dashboard.service";
+import { ErrorMessage } from "../../utils/message";
 
 const styles = {
     list: {
@@ -38,7 +39,7 @@ class AssetListComponent extends React.Component<any> {
                 }
             }
         } catch (error) {
-            alert(error.response.data.message || 'error in asset list')
+            alert((error.response && error.response.data && error.response.data.message)|| error.message || ErrorMessage.SOMETHING_WENT_WRONG)
         }
     }
     componentWillUnmount() {

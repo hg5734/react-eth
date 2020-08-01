@@ -2,6 +2,7 @@ import * as React from "react";
 import { Transaction, LogsQuery } from '../../interfaces/interface';
 import PubSub from 'pubsub-js'
 import { DashboardSevice } from "../../services/dashboard.service";
+import { ErrorMessage } from "../../utils/message";
 
 const styles = {
     list: {
@@ -35,7 +36,7 @@ class TransactionListComponent extends React.Component<any> {
                 this.setState({ transactions: result || [] })
             }
         } catch (error) {
-            alert(error.response.data.message || 'error in transaction list')
+            alert((error.response && error.response.data && error.response.data.message)|| error.message || ErrorMessage.SOMETHING_WENT_WRONG)
         }
     }
     componentWillUnmount() {

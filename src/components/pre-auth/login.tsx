@@ -6,6 +6,7 @@ import { email, required } from "../../utils/validations";
 import { renderField } from "../common/form/field";
 import { LoginInterface } from '../../interfaces/interface';
 import { container, button } from "../../styles";
+import { ErrorMessage } from "../../utils/message";
 
 const styles = {
     loginContainer: {
@@ -39,7 +40,7 @@ class LoginComponent extends React.Component<any> {
             }
         } catch (error) {
             console.log(error);
-            alert(error.response.data.message || 'error in login')
+            alert((error.response && error.response.data && error.response.data.message)|| error.message || ErrorMessage.SOMETHING_WENT_WRONG)
         }
     }
 
