@@ -3,7 +3,7 @@ const styles = {
   input : {
     marginTop :'10px',
     height: '30px',
-    width: '250px',
+    width: '400px',
     borderWidth:1,
     borderColor:'blue',
     backgroundColor: '#80fffff',

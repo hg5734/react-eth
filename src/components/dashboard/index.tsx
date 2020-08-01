@@ -1,6 +1,6 @@
 import * as React from "react";
 import AddUserComponent from "./addAsset";
-import UserListComponent from "./transactionList";
+import AssetListComponent from "./assetList";
 import LogoutComponent from "../pre-auth/logout";
 import { container } from "../../styles";
 
@@ -15,7 +15,7 @@ class UserComponent extends React.Component<any> {
                 <LogoutComponent />
                 <div style={styles.container}>
                     <AddUserComponent />
-                    <UserListComponent />
+                    <AssetListComponent />
                 </div>
 
             </div>

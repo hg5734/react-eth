@@ -6,33 +6,29 @@ import { Field, reduxForm } from 'redux-form'
 import { Asset } from '../../interfaces/interface';
 import PubSub from 'pubsub-js'
 import { EthSevice } from "../../services/eth.service";
-import { connect } from 'react-redux'
-
+import { DashboardSevice } from "../../services/dashboard.service";
+import { ErrorMessage } from "../../utils/message";
 
 class AddAssetComponent extends React.Component<any, any> {
-
-    constructor(props: any) {
-        super(props)
-        // Added temp address for autofill
-
-    }
 
     addAsset = async (values: Asset) => {
         console.log('control in add asset', values)
         try {
-            // this.props.reset();
-            values = {
-                address: '0x0E0744b920960c4B74Db4980C9f84784d0956c77',
-                assetAddress: '0xd08b29350b50748b0c2fc052a2cb93fa1e68f973'
-            };
-            let balance = await EthSevice.getBalanceOfAsset(values.address, values.assetAddress)
-            console.log(balance, 'balance')
-            let logs  = await EthSevice.getAssetLogs(values.address, values.assetAddress);
-            console.log(logs,'logs');
-            PubSub.publish('TX_LIST', '');
+            if (!EthSevice.isValidAddress(values.ethAddress) || !EthSevice.isValidAddress(values.assetAddress)) {
+                alert(ErrorMessage.INVALID_ADDRESS)
+                return;
+            }
+            let response = await DashboardSevice.addAsset(values);
+            if (response) {
+                this.props.reset();
+                PubSub.publish('ASSET_LIST', '');
+                // let balance = await EthSevice.getBalanceOfAsset(values.ethAddress, values.assetAddress)
+                // console.log(balance, 'balance')
+                this.props.reset();
+            }
         } catch (error) {
             console.log(error);
-            alert(error.message || 'error in add asset')
+            alert(error.message || ErrorMessage.SOMETHING_WENT_WRONG)
         }
     }
 
@@ -41,8 +37,10 @@ class AddAssetComponent extends React.Component<any, any> {
         return (
             <div >
                 <form onSubmit={handleSubmit(this.addAsset).bind(this)}>
-                    <Field name="address" type="text" component={renderField}  label="Address" validate={[required]} />
+                    <Field name="ethAddress" type="text" component={renderField} label="Address" validate={[required]} />
                     <Field name="assetAddress" type="text" component={renderField} label="Asset Address" validate={[required]} />
+                    <Field name="name" type="text" component={renderField} label="Asset Name" validate={[required]} />
+                    <Field name="symbol" type="text" component={renderField} label="Symbol" />
                     <div> <Button variant="contained" color="primary" type="submit" disabled={submitting}> Add Asset</Button></div>
                 </form>
             </div>

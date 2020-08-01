@@ -5,11 +5,10 @@ import { constant } from "../utils/constant";
 const { utils } = Web3;
 const { etherNet, etherNetSocket } = constant;
 
-
 export class EthSevice extends BaseSevice {
 
     static web3Obj = new Web3(new Web3.providers.HttpProvider(etherNet));
-    static   = new Web3.providers.WebsocketProvider(etherNetSocket);
+    static web3ObjSocket = new Web3.providers.WebsocketProvider(etherNetSocket);
 
     static formatBalance(balance: string) {
         return balance; // TODO: format the balance according to requirement
@@ -41,17 +40,14 @@ export class EthSevice extends BaseSevice {
             const result = await this.web3Obj.eth.getPastLogs({
                 toBlock: utils.toHex(latestBlock),
                 fromBlock: utils.toHex(0),
-                address: [utils.toHex(ethAddress)],
+                address: [utils.toHex(contractAddress)],
+                // topics : [utils.sha3(`Transfer(address,address,unit256)`)]
             });
             console.log(result);
-
         } catch (error) {
             console.log(error);
         }
 
     }
-
-
-
 
 }

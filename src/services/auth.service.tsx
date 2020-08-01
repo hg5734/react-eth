@@ -1,5 +1,8 @@
 import BaseSevice from "./base";
+import { postRequest } from '../utils/axios'
 import { LoginInterface, IUserInformation } from '../interfaces/interface';
+import { apiUri } from "../utils/constant";
+const { loginUrl } = apiUri;
 
 export class AuthSevice extends BaseSevice {
 
@@ -7,20 +10,7 @@ export class AuthSevice extends BaseSevice {
 
     static async login(data: LoginInterface) {
         try {
-            //const { data: result } = await postRequest(loginUrl, { data }, null, true)
-            // Dummy service
-            const result = await new Promise((resolve, reject) => {
-                resolve({
-                    result: {
-                        data: {
-                            token: 'test',
-                            email: 'test',
-                            role: 'test',
-                            name: 'test'
-                        }
-                    }
-                })
-            })
+            const { data: result } = await postRequest(loginUrl, { data }, null, true)
             return result;
         } catch (error) {
             throw error;
@@ -33,7 +23,7 @@ export class AuthSevice extends BaseSevice {
     }
 
     static getUserData(): IUserInformation {
-        return this.userData || JSON.parse('' + localStorage.getItem('_u'));
+        return this.userData || JSON.parse(''+localStorage.getItem('_u'));
     }
 
     static clearUser() {

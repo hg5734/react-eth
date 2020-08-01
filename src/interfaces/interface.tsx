@@ -11,8 +11,16 @@ export interface IUserInformation {
 }
 
 export interface Asset {
-    address: string;
-    assetAddress:string;
+    _id?:string;
+    ethAddress: string;
+    assetAddress: string;
+    name: string;
+    symbol?: string
+}
+
+export interface LogsQuery {
+    ethAddress: string;
+    assetAddress: string;
 }
 
 export interface Transaction {

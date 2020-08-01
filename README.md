@@ -1,3 +1,9 @@
+### Address for Testing
+Ropsten test network 
+# TOKEN Address 0x65f07e7961e15ef190dcf78dfb6d48cb362237e3
+# Eth Address 0x0E0744b920960c4B74Db4980C9f84784d0956c77
+
+
 ### Folder structure
 1. components (Application component and pages)
 2. interface (Typescript interfaces)

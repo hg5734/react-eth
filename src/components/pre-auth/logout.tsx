@@ -10,10 +10,7 @@ const styles = {
 
 }
 class LogoutComponent extends React.Component<any> {
-    constructor(props: any) {
-        super(props)
-    }
-
+    
     logout() {
         AuthSevice.clearUser();
         this.props.history.push("/login");
